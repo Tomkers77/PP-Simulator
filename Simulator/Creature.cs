@@ -87,6 +87,29 @@ internal class Creature
             _level++;
         }
     }
+
+    //----------------------------------------------------
+
+    public void Go(Direction transfer)
+    {
+        string move = transfer.ToString();
+        move = char.ToLower(move[0]) + move.Substring(1);
+        Console.WriteLine($"{Name} goes {move}");
+    }
+
+    public void Go(Direction[] motions)
+    {
+        foreach (Direction motion in motions)
+        {
+            Go(motion);
+        }
+    }
+
+    public void Go(string travel)
+    {
+        Go(DirectionParser.Parse(travel));
+    }
+
 }
 
    
