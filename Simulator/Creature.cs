@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Simulator;
 
-internal class Creature
+public abstract class Creature
 {
     private string _name = "Unknown";
     public string Name
@@ -60,6 +60,8 @@ internal class Creature
         } 
     }
 
+    public abstract int Power { get; }
+
     //--------------------------------------------------
     public Creature(string name, int level = 1)
     {
@@ -70,10 +72,8 @@ internal class Creature
     public Creature() { }
 
     //---------------------------------------------------
-    public void SayHi()
-    {
-        Console.WriteLine($"Hi, I'm {Name}, my level is {Level}.");
-    }
+    public abstract void SayHi();
+    
 
     public string Info
     {
