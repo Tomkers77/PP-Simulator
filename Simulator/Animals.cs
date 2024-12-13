@@ -15,34 +15,24 @@ public class Animals
         get { return _description; }
         init
         {
-            string description = value.Trim();
-
-            if (description.Length > 15)
-            {
-                description = description.Remove(15).TrimEnd();
-            }
-
-            if (description.Length < 3)
-            {
-                description = description.PadRight(3, '#');
-            }
-
-            if (char.IsLower(description[0]))
-            {
-                description = char.ToUpper(description[0]) + description.Substring(1);
-            }
-
-            _description = description;
+            _description = Validator.Shortener(value, 3, 15, '#');
         } 
     }
     public uint Size { get; set; } = 3;
 
-    public string Info
+    public virtual string Info
     {
         get
         {
             return $"{Description} <{Size}>";
         }
 
+    }
+
+    //----------------------------------------------------------------------------------
+
+    public override string ToString()
+    {
+        return GetType().Name.ToUpper() + ": " + Info;
     }
 }

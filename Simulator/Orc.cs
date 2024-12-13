@@ -14,10 +14,7 @@ public class Orc : Creature
         get { return _rage; }
         init
         {
-            int rage = value;
-            if (rage > 10) { rage = 10; }
-            if (rage < 0) { rage = 0; }
-            _rage = rage;
+            _rage = Validator.Limiter(value, 0, 10);
         }
     }
 
@@ -49,5 +46,8 @@ public class Orc : Creature
 
     public override void SayHi() => Console.WriteLine($"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}.");
 
-    public override int Power => 7 * Level + 3 * _rage;
+    public override int Power => 7 * Level + 3 * Rage;
+
+    public override string Info => $"{Name} [{Level}][{Rage}]";
+    
 }

@@ -18,25 +18,7 @@ public abstract class Creature
         get { return _name; }
         init
         {
-            
-            string name = value.Trim();
-            
-            if (name.Length > 25)
-            {
-                name = name.Remove(25).TrimEnd();
-            }
-
-            if (name.Length < 3) 
-            {
-                name = name.PadRight(3, '#');
-            }
-
-            if (char.IsLower(name[0]))
-            {
-                name = char.ToUpper(name[0]) + name.Substring(1);
-            }
-            
-            _name = name;
+            _name = Validator.Shortener(value, 3, 25, '#');
         }
     }
 
@@ -46,17 +28,7 @@ public abstract class Creature
         get { return _level; }
         init
         {
-            int level = value;
-            if (level < 1)
-            {
-                level = 1;
-            }
-            if (level > 10)
-            {
-                level = 10;
-            }
-
-             _level = level;
+            _level = Validator.Limiter(value, 1, 10);
         } 
     }
 
@@ -73,12 +45,10 @@ public abstract class Creature
 
     //---------------------------------------------------
     public abstract void SayHi();
-    
 
-    public string Info
-    {
-        get { return $"{Name} [{Level}]"; }
-    }
+
+    public abstract string Info {  get; }
+    
 
     public void Upgrade() 
     { 
@@ -110,6 +80,12 @@ public abstract class Creature
         Go(DirectionParser.Parse(travel));
     }
 
+    //------------------------------------------------------------------------
+
+    public override string ToString()
+    {
+        return GetType().Name.ToUpper() + ": " + Info;
+    }
 }
 
    
