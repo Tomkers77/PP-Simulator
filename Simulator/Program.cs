@@ -1,12 +1,12 @@
 ﻿namespace Simulator;
 
-internal class Program
+public class Program
 {
     static void Main(string[] args)
     {
         Console.WriteLine("Starting Simulator!\n");
 
-
+        /*
         Lab4a();
 
         Console.WriteLine();
@@ -18,11 +18,14 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine();
 
-        Lab4b();
+       // Lab4b();
 
         Point p = new(10, 25);
         Console.WriteLine(p.Next(Direction.Right));          // (11, 25)
         Console.WriteLine(p.NextDiagonal(Direction.Right));  // (11, 24)
+        */
+
+        Lab5a();
     }
 
     static void Lab4a()
@@ -69,5 +72,36 @@ internal class Program
         };
         Console.WriteLine("\nMy objects:");
         foreach (var o in myObjects) Console.WriteLine(o);
+    }
+
+    static void Lab5a()
+    {
+        Rectangle exRec1 = new Rectangle(1, 2, 3, 4);
+        Console.WriteLine(exRec1.ToString());
+
+        Rectangle exRec2 = new Rectangle(8, 7, 6, 5);
+        Console.WriteLine(exRec2.ToString());
+
+        Point exPoint1 = new Point(2, 3);
+        Console.WriteLine(exRec1.Contains(exPoint1));
+        Console.WriteLine(exRec2.Contains(exPoint1));
+
+        try
+        {
+            Rectangle exRec3 = new Rectangle(1, 2, 1, 5);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        try
+        {
+            Rectangle exRec3 = new Rectangle(1, 2, 11, 2);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
