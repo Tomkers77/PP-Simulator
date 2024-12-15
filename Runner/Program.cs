@@ -1,6 +1,7 @@
-﻿using Simulator.Maps;
+﻿using Simulator;
+using Simulator.Maps;
 
-namespace Simulator;
+namespace Runner;
 
 public class Program
 {
@@ -8,7 +9,7 @@ public class Program
     {
         Console.WriteLine("Starting Simulator!\n");
 
-        /*
+        
         Lab4a();
 
         Console.WriteLine();
@@ -20,43 +21,46 @@ public class Program
         Console.WriteLine();
         Console.WriteLine();
 
-       // Lab4b();
+        Lab4b();
 
         Point p = new(10, 25);
         Console.WriteLine(p.Next(Direction.Right));          // (11, 25)
         Console.WriteLine(p.NextDiagonal(Direction.Right));  // (11, 24)
-        */
+
+        Console.WriteLine();
+        Console.WriteLine();
+        
         Lab5a();
         Lab5b();
+        
     }
-
     static void Lab4a()
     {
         Console.WriteLine("HUNT TEST\n");
         var o = new Orc() { Name = "Gorbag", Rage = 7 };
-        o.SayHi();
+        o.Greeting();
         for (int i = 0; i < 10; i++)
         {
             o.Hunt();
-            o.SayHi();
+            o.Greeting();
         }
 
         Console.WriteLine("\nSING TEST\n");
         var e = new Elf("Legolas", agility: 2);
-        e.SayHi();
+        e.Greeting();
         for (int i = 0; i < 10; i++)
         {
             e.Sing();
-            e.SayHi();
+            e.Greeting();
         }
 
         Console.WriteLine("\nPOWER TEST\n");
         Creature[] creatures = {
-        o,
-        e,
-        new Orc("Morgash", 3, 8),
-        new Elf("Elandor", 5, 3)
-        };
+    o,
+    e,
+    new Orc("Morgash", 3, 8),
+    new Elf("Elandor", 5, 3)
+    };
 
         foreach (Creature creature in creatures)
         {
@@ -67,13 +71,14 @@ public class Program
     static void Lab4b()
     {
         object[] myObjects = {
-        new Animals() { Description = "dogs"},
-        new Birds { Description = "  eagles ", Size = 10 },
-        new Elf("e", 15, -3),
-        new Orc("morgash", 6, 4)
-        };
+    new Animals() { Description = "dogs"},
+    new Birds { Description = "  eagles ", Size = 10 },
+    new Elf("e", 15, -3),
+    new Orc("morgash", 6, 4)
+    };
         Console.WriteLine("\nMy objects:");
         foreach (var o in myObjects) Console.WriteLine(o);
+        Console.WriteLine();
     }
 
     static void Lab5a()
@@ -164,4 +169,5 @@ public class Program
             Console.WriteLine(ex.ParamName);
         }
     }
+    
 }

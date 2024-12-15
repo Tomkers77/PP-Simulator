@@ -44,7 +44,7 @@ public abstract class Creature
     public Creature() { }
 
     //---------------------------------------------------
-    public abstract void SayHi();
+    public abstract string Greeting();
 
 
     public abstract string Info {  get; }
@@ -60,24 +60,24 @@ public abstract class Creature
 
     //----------------------------------------------------
 
-    public void Go(Direction transfer)
-    {
-        string move = transfer.ToString();
-        move = char.ToLower(move[0]) + move.Substring(1);
-        Console.WriteLine($"{Name} goes {move}");
-    }
+    public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
 
-    public void Go(Direction[] motions)
+    public string[] Go(Direction[] motions)
     {
-        foreach (Direction motion in motions)
+        string[] result = new string[motions.Length];
+
+
+        for (int i = 0; i< motions.Length; i++)
         {
-            Go(motion);
+            result[i] = $"{Name} goes {Go(motions[i])}";
         }
+        return result;
     }
 
-    public void Go(string travel)
+    public string[] Go(string travel)
     {
-        Go(DirectionParser.Parse(travel));
+        Direction[] directions = DirectionParser.Parse(travel);
+        return Go(directions);
     }
 
     //------------------------------------------------------------------------
