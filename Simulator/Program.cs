@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using Simulator.Maps;
+
+namespace Simulator;
 
 public class Program
 {
@@ -24,8 +26,8 @@ public class Program
         Console.WriteLine(p.Next(Direction.Right));          // (11, 25)
         Console.WriteLine(p.NextDiagonal(Direction.Right));  // (11, 24)
         */
-
         Lab5a();
+        Lab5b();
     }
 
     static void Lab4a()
@@ -77,17 +79,23 @@ public class Program
     static void Lab5a()
     {
         Rectangle exRec1 = new Rectangle(1, 2, 3, 4);
-        Console.WriteLine(exRec1.ToString());
+        Console.WriteLine($"Współrzędne punktów przy danych kolejno (1, 2, 3, 4): {exRec1.ToString()}");
 
         Rectangle exRec2 = new Rectangle(8, 7, 6, 5);
-        Console.WriteLine(exRec2.ToString());
+        Console.WriteLine($"Współrzędne punktów przy danych kolejno (8, 7, 6, 5): {exRec2.ToString()}");
+
+        Console.WriteLine();
 
         Point exPoint1 = new Point(2, 3);
-        Console.WriteLine(exRec1.Contains(exPoint1));
-        Console.WriteLine(exRec2.Contains(exPoint1));
+        Console.WriteLine($"Czy punkt {exPoint1} należy do pierwszego prostokąta: {exRec1.Contains(exPoint1)}");
+        Console.WriteLine($"Czy punkt {exPoint1} należy do drugiego prostokąta: {exRec2.Contains(exPoint1)}");
+
+        Console.WriteLine();
 
         try
         {
+            Console.WriteLine("Próba utworzenia chudego prostokąta dla osi X");
+            Console.Write("Efekt: ");
             Rectangle exRec3 = new Rectangle(1, 2, 1, 5);
         }
         catch (ArgumentException ex)
@@ -95,13 +103,65 @@ public class Program
             Console.WriteLine(ex.Message);
         }
 
+        Console.WriteLine();
+
         try
         {
+            Console.WriteLine("Próba utworzenia chudego prostokąta dla osi Y");
+            Console.Write("Efekt: ");
             Rectangle exRec3 = new Rectangle(1, 2, 11, 2);
         }
         catch (ArgumentException ex)
         {
             Console.WriteLine(ex.Message);
+        }
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+
+    public static void Lab5b()
+    {
+        SmallSquareMap exMap1 = new SmallSquareMap(12);
+
+        Point p1 = new Point(1, 5);
+        Point p2 = new Point(12, 12);
+        Point p3 = new Point(11, 11);
+        Point p4 = new Point(63, 35);
+
+        Console.WriteLine(exMap1.Exist(p1));
+        Console.WriteLine(exMap1.Exist(p2));
+        Console.WriteLine(exMap1.Exist(p3));
+        Console.WriteLine(exMap1.Exist(p4));
+
+        Console.WriteLine();
+
+        Console.WriteLine($"{p1}, w góre {exMap1.Next(p1, Direction.Up)}");
+        Console.WriteLine($"{p2}, w dół {exMap1.Next(p2, Direction.Down)}");
+        Console.WriteLine($"{p3}, w lewo {exMap1.Next(p3, Direction.Left)}");
+        Console.WriteLine($"{p4}, w prawo {exMap1.Next(p4, Direction.Right)}");
+
+        Console.WriteLine();
+
+        Console.WriteLine($"{p1}, w góre i w prawo {exMap1.NextDiagonal(p1, Direction.Up)}");
+        Console.WriteLine($"{p2}, w dół i w lewo {exMap1.NextDiagonal(p2, Direction.Down)}");
+        Console.WriteLine($"{p3}, w lewo i w góre {exMap1.NextDiagonal(p3, Direction.Left)}");
+        Console.WriteLine($"{p4}, w prawo i w dół {exMap1.NextDiagonal(p4, Direction.Right)}");
+
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
+        try
+        {
+            SmallSquareMap exMap2 = new SmallSquareMap(22);
+
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            Console.WriteLine(ex.ParamName);
         }
     }
 }
