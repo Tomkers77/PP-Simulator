@@ -16,6 +16,8 @@ public class SmallTorusMapTests
         Assert.Equal(size, map.Size);
     }
 
+    //-----------------------------------------------------------------------------------------------
+
     [Theory]
     [InlineData(4)]
     [InlineData(21)]
@@ -28,6 +30,8 @@ public class SmallTorusMapTests
         Assert.Throws<ArgumentOutOfRangeException>(() =>
              new SmallTorusMap(size));
     }
+
+    //------------------------------------------------------------------------------------------------
 
     [Theory]
     [InlineData(3, 4, 5, true)]
@@ -46,6 +50,8 @@ public class SmallTorusMapTests
         Assert.Equal(expected, result);
     }
 
+    //---------------------------------------------------------------------------------------------------
+
     [Theory]
     [InlineData(5, 10, Direction.Up, 5, 11)]
     [InlineData(0, 0, Direction.Down, 0, 19)]
@@ -62,6 +68,8 @@ public class SmallTorusMapTests
         // Assert
         Assert.Equal(new Point(expectedX, expectedY), nextPoint);
     }
+
+    //-------------------------------------------------------------------------------------------------------------
 
     [Theory]
     [InlineData(5, 10, Direction.Up, 6, 11)]

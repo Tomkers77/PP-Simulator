@@ -18,6 +18,8 @@ public class DirectionParserTests
         );
     }
 
+    //-----------------------------------------------------------------------------------------------
+
     [Fact]
     public void Parse_ShouldHandleLowercaseLetters()
     {
@@ -32,6 +34,8 @@ public class DirectionParserTests
         );
     }
 
+    //---------------------------------------------------------------------------------------------------------
+
     [Fact]
     public void Parse_ShouldReturnEmptyArrayForEmptyString()
     {
@@ -42,6 +46,8 @@ public class DirectionParserTests
         // Assert
         Assert.Empty(result);
     }
+
+    //---------------------------------------------------------------------------------------------------------
 
     [Theory]
     [InlineData("urdlx", new[] { Direction.Up, Direction.Right,
