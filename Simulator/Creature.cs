@@ -76,8 +76,8 @@ public abstract class Creature
 
     public string[] Go(string travel)
     {
-        Direction[] directions = DirectionParser.Parse(travel);
-        return Go(directions);
+        List<Direction> directions = DirectionParser.Parse(travel);
+        return Go(directions.ToArray());
     }
 
     //------------------------------------------------------------------------

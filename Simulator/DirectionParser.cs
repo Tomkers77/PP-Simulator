@@ -8,39 +8,30 @@ namespace Simulator;
 
 public static class DirectionParser
 {
-    public static Direction[] Parse(string letters)
+    public static List<Direction> Parse(string letters)
     {
-        string route = "";
+        List<Direction> route = new();
         letters = letters.ToLower();
         foreach (char letter in letters)
-        {
-            if (letter == 'u' || letter == 'r' || letter == 'd' || letter == 'l')
-            {
-                route += letter;
-            }
-        }
-        Direction[] Travel = new Direction[route.Length];
-
-        for (int i = 0; i < route.Length; i++)
-        {
-            switch (route[i])
+        {   
+            switch (letter)
             {
                 case 'u':
-                    Travel[i] = Direction.Up;
+                    route.Add(Direction.Up);
                     break;
                 case 'r':
-                    Travel[i] = Direction.Right;
+                    route.Add(Direction.Right);
                     break;
                 case 'd':
-                    Travel[i] = Direction.Down;
+                    route.Add(Direction.Down);
                     break;
                 case 'l':
-                    Travel[i] = Direction.Left;
+                    route.Add(Direction.Left);
                     break;
                 default:
                     continue;
             }
         }
-        return Travel;
+        return route;
     }
 }

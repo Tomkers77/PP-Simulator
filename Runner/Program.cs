@@ -7,7 +7,7 @@ public class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Starting Simulator!\n");
+       /* Console.WriteLine("Starting Simulator!\n");
 
         
         Lab4a();
@@ -32,6 +32,7 @@ public class Program
         
         Lab5a();
         Lab5b();
+       */
         
     }
     static void Lab4a()
@@ -128,7 +129,7 @@ public class Program
 
     public static void Lab5b()
     {
-        SmallSquareMap exMap1 = new SmallSquareMap(12);
+        SmallSquareMap exMap1 = new SmallSquareMap(12, 35);
 
         Point p1 = new Point(1, 5);
         Point p2 = new Point(12, 12);
@@ -161,7 +162,7 @@ public class Program
 
         try
         {
-            SmallSquareMap exMap2 = new SmallSquareMap(22);
+            SmallSquareMap exMap2 = new SmallSquareMap(22,35);
 
         }
         catch (ArgumentOutOfRangeException ex)

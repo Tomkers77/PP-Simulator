@@ -7,27 +7,15 @@ using System.Threading.Tasks;
 
 namespace Simulator.Maps;
 
-public class SmallTorusMap : Map
+public class SmallTorusMap : SmallMap
 {
-    public int Size {get; } 
-
-    public SmallTorusMap(int size)
-    {
-        if (size >= 5 && size <= 20)
-        {
-            Size = size;
-        }
-        else
-        {
-            throw new ArgumentOutOfRangeException("Podano niewłaściwy rozmiar. Podaj liczbę z zakresu <5,20>");
-        }
-    }
+    public SmallTorusMap(int sizeX, int sizeY) : base(sizeX, sizeY) { }
 
     //----------------------------------------------------------------------
 
     public override bool Exist(Point p)
     {
-        Rectangle exRec = new Rectangle(0, 0, Size - 1, Size - 1);
+        Rectangle exRec = new Rectangle(0, 0, SizeX - 1, SizeY - 1);
         bool check = exRec.Contains(p);
         return check;
     }
@@ -37,8 +25,8 @@ public class SmallTorusMap : Map
         Point nextPoint = new Point();
         nextPoint = p.Next(d);
 
-        int newNextPointX = (nextPoint.X + Size) % Size;
-        int newNextPointY = (nextPoint.Y + Size) % Size;
+        int newNextPointX = (nextPoint.X + SizeX) % SizeX;
+        int newNextPointY = (nextPoint.Y + SizeY) % SizeY;
 
         Point newNextPoint = new Point(newNextPointX, newNextPointY);
         return newNextPoint;
@@ -50,8 +38,8 @@ public class SmallTorusMap : Map
         Point nextPoint = new Point();
         nextPoint = p.NextDiagonal(d);
 
-        int newNextPointX = (nextPoint.X + Size) % Size;
-        int newNextPointY = (nextPoint.Y + Size) % Size;
+        int newNextPointX = (nextPoint.X + SizeX) % SizeX;
+        int newNextPointY = (nextPoint.Y + SizeY) % SizeY;
 
         Point newNextPoint = new Point(newNextPointX, newNextPointY);
         return newNextPoint;

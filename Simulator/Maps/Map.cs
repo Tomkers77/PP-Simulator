@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Simulator.Maps;
 
 /// <summary>
@@ -11,6 +12,23 @@ namespace Simulator.Maps;
 /// </summary>
 public abstract class Map
 {
+    public int SizeX { get; }
+    public int SizeY { get; }
+
+    public Map(int sizeX, int sizeY)
+    {
+        if (sizeX >= 5 && sizeY >= 5)
+        {
+            SizeX = sizeX;
+            SizeY = sizeY;
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException("Podano niewłaściwy rozmiar. Podaj liczbę z zakresu <5,20>");
+        }
+    }
+
+
     /// <summary>
     /// Check if give point belongs to the map.
     /// </summary>
