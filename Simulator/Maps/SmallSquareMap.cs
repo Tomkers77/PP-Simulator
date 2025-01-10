@@ -11,12 +11,6 @@ public class SmallSquareMap : SmallMap
 
     public SmallSquareMap(int sizeX, int sizeY) : base(sizeX, sizeY) { }
 
-    public override bool Exist(Point p)
-    {
-        Rectangle exRec = new Rectangle(0, 0, SizeX - 1, SizeY - 1);
-        bool check = exRec.Contains(p);
-        return check;
-    }
 
     public override Point Next(Point p, Direction d)
     {

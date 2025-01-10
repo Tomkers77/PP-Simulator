@@ -7,11 +7,22 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Simulator.Maps;
 
 namespace Simulator;
 
 public abstract class Creature
 {
+    public Map? Map { get; set; }
+    
+    public Point Position { get; set; }
+
+    public void InitMapAndPosition(Map map, Point position)
+    {
+        Map = map;
+        map.Add(this, position);      
+    }
+
     private string _name = "Unknown";
     public string Name
     {
@@ -60,8 +71,21 @@ public abstract class Creature
 
     //----------------------------------------------------
 
-    public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
+    public void Go(Direction direction)
+    {
+        if (Map == null)
+        {
+            throw new InvalidOperationException("Creature nie ma mapy!");
 
+        }
+        else
+        {
+            Point nextPoint = Map.Next(Position, direction);
+            Map.Move(this, nextPoint);
+        }
+    }
+
+    /*
     public string[] Go(Direction[] motions)
     {
         string[] result = new string[motions.Length];
@@ -79,7 +103,7 @@ public abstract class Creature
         List<Direction> directions = DirectionParser.Parse(travel);
         return Go(directions.ToArray());
     }
-
+    */
     //------------------------------------------------------------------------
 
     public override string ToString()
