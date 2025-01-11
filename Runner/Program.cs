@@ -7,33 +7,48 @@ public class Program
 {
     static void Main(string[] args)
     {
-       /* Console.WriteLine("Starting Simulator!\n");
+        /* Console.WriteLine("Starting Simulator!\n");
 
+
+         Lab4a();
+
+         Console.WriteLine();
+         Console.WriteLine();
+
+         Creature c = new Elf("Elandor", 5, 3);
+         Console.WriteLine(c);  // ELF: Elandor [5]
+
+         Console.WriteLine();
+         Console.WriteLine();
+
+         Lab4b();
+
+         Point p = new(10, 25);
+         Console.WriteLine(p.Next(Direction.Right));          // (11, 25)
+         Console.WriteLine(p.NextDiagonal(Direction.Right));  // (11, 24)
+
+         Console.WriteLine();
+         Console.WriteLine();
+
+         Lab5a();
         
-        Lab4a();
+         Lab5b();
+        */
 
-        Console.WriteLine();
-        Console.WriteLine();
+        var map = new SmallTorusMap(10, 10);
+        var creatures = new List<Creature> { new Orc("Orc1"), new Elf("Elf1") };
+        var positions = new List<Point> { new Point(0, 3), new Point(2, 5) };
+        var moves = "rngeuslwu";
 
-        Creature c = new Elf("Elandor", 5, 3);
-        Console.WriteLine(c);  // ELF: Elandor [5]
+        var simulation = new Simulation(map, creatures, positions, moves);
 
-        Console.WriteLine();
-        Console.WriteLine();
+        while (!simulation.Finished)
+        {
+            simulation.Turn();
+            //Console.WriteLine($"Ruch wykonany: {simulation.CurrentCreature.Name} w kierunku {simulation.CurrentMoveName}");
+        }
 
-        Lab4b();
 
-        Point p = new(10, 25);
-        Console.WriteLine(p.Next(Direction.Right));          // (11, 25)
-        Console.WriteLine(p.NextDiagonal(Direction.Right));  // (11, 24)
-
-        Console.WriteLine();
-        Console.WriteLine();
-        
-        Lab5a();
-        Lab5b();
-       */
-        
     }
     static void Lab4a()
     {

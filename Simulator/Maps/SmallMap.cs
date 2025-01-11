@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Simulator.Maps;
 
@@ -22,6 +23,14 @@ public abstract class SmallMap : Map
         }    
 
         _fields = new List<Creature>[SizeX, SizeY];
+
+        for (int i = 0; i < SizeX; i++)
+        {
+            for (int j = 0; j < SizeY; j++)
+            {
+                _fields[i, j] = new List<Creature>();
+            }
+        }
     }
 
     public override bool Exist(Point p)
