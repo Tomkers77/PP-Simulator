@@ -10,7 +10,7 @@ namespace Simulator.Maps;
 
 public abstract class SmallMap : Map
 {
-    private List<Creature>[,] _fields;
+    private List<IMappable>[,] _fields;
     public SmallMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
         if (sizeX > 20)
@@ -22,13 +22,13 @@ public abstract class SmallMap : Map
             throw new ArgumentOutOfRangeException(nameof(sizeY));
         }    
 
-        _fields = new List<Creature>[SizeX, SizeY];
+        _fields = new List<IMappable>[SizeX, SizeY];
 
         for (int i = 0; i < SizeX; i++)
         {
             for (int j = 0; j < SizeY; j++)
             {
-                _fields[i, j] = new List<Creature>();
+                _fields[i, j] = new List<IMappable>();
             }
         }
     }
@@ -40,14 +40,14 @@ public abstract class SmallMap : Map
         return check;
     }
 
-    public override void Add(Creature creature, Point point)
+    public override void Add(IMappable creature, Point point)
     {
         if (!Exist(point))
         {
             throw new ArgumentOutOfRangeException(nameof(point));
         }
 
-        List<Creature> creaturesAtPoint = At(point);
+        List<IMappable> creaturesAtPoint = At(point);
 
         if (creaturesAtPoint.Contains(creature))
         {
@@ -60,14 +60,14 @@ public abstract class SmallMap : Map
         }
     }
 
-    public override void Remove(Creature creature, Point point)
+    public override void Remove(IMappable creature, Point point)
     {
         if (!Exist(point))
         {
             throw new ArgumentOutOfRangeException(nameof(point));
         }
 
-        List<Creature> creaturesAtPoint = At(point);
+        List<IMappable> creaturesAtPoint = At(point);
 
         if (creaturesAtPoint.Contains(creature))
         {
@@ -79,7 +79,7 @@ public abstract class SmallMap : Map
         }
     }
 
-    public override void Move(Creature creature, Point point)
+    public override void Move(IMappable creature, Point point)
     {
         if (!Exist(point))
         {
@@ -92,17 +92,17 @@ public abstract class SmallMap : Map
         }
     }
 
-    public override List<Creature> At(Point point)
+    public override List<IMappable> At(Point point)
     {
         if (!Exist(point))
         {
-            return new List<Creature>();
+            return new List<IMappable>();
         }
 
         return _fields[point.X, point.Y];
     }
 
-    public override List<Creature> At(int x, int y)
+    public override List<IMappable> At(int x, int y)
     {
         Point pointTemp = new Point(x,y);
 

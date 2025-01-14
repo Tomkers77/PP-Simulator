@@ -15,15 +15,15 @@ public abstract class Map
     public int SizeX { get; set; }
     public int SizeY { get; set; }
 
-    public abstract void Add(Creature c, Point p);
+    public abstract void Add(IMappable c, Point p);
 
-    public abstract void Remove(Creature c, Point p);
+    public abstract void Remove(IMappable c, Point p);
 
-    public abstract void Move(Creature c, Point p);
+    public abstract void Move(IMappable c, Point p);
 
-    public abstract List<Creature> At(Point p);
+    public abstract List<IMappable> At(Point p);
 
-    public abstract List<Creature> At(int x, int y);
+    public abstract List<IMappable> At(int x, int y);
     
 
     public Map(int sizeX, int sizeY)

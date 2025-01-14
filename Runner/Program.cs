@@ -55,7 +55,7 @@ public class Program
         Console.OutputEncoding = Encoding.UTF8;
 
         SmallSquareMap map = new(5, 5);
-        List<Creature> creatures = [new Orc("Gorbag"), new Elf("Elandor")];
+        List<IMappable> creatures = [new Orc("Gorbag"), new Elf("Elandor")];
         List<Point> points = [new(0, 3), new(2, 3)];
         string moves = "dlrludl";
 
