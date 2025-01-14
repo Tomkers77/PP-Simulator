@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Simulator;
 
 public class Elf : Creature
-{
+{    
     private int _agility;
     public int Agility
     {

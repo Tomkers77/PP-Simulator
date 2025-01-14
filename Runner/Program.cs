@@ -1,5 +1,8 @@
 ﻿using Simulator;
 using Simulator.Maps;
+using System.Text;
+using System;
+using SimConsole;
 
 namespace Runner;
 
@@ -33,7 +36,7 @@ public class Program
          Lab5a();
         
          Lab5b();
-        */
+        
 
         var map = new SmallTorusMap(10, 10);
         var creatures = new List<Creature> { new Orc("Orc1"), new Elf("Elf1") };
@@ -47,6 +50,18 @@ public class Program
             simulation.Turn();
             //Console.WriteLine($"Ruch wykonany: {simulation.CurrentCreature.Name} w kierunku {simulation.CurrentMoveName}");
         }
+        */
+
+        Console.OutputEncoding = Encoding.UTF8;
+
+        SmallSquareMap map = new(5, 5);
+        List<Creature> creatures = [new Orc("Gorbag"), new Elf("Elandor")];
+        List<Point> points = [new(0, 3), new(2, 3)];
+        string moves = "dlrludl";
+
+        Simulation simulation = new(map, creatures, points, moves);
+        MapVisualizer mapVisualizer = new(simulation.Map);
+        mapVisualizer.Draw();
 
 
     }
