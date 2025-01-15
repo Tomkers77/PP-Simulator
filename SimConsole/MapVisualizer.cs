@@ -30,24 +30,15 @@ public class MapVisualizer
         }
         Console.WriteLine(new string(Box.Horizontal, 3) + Box.TopRight);
 
-
-        for (int j = 0; j < _map.SizeY - 1; j++)
+        for (int j = _map.SizeY - 1; j > 0; j--)
         {
             Console.Write(Box.Vertical);
             for (int i = 0; i < _map.SizeX; i++)
             {
-
                 var creatures = _map.At(i, j);
                 if (creatures.Count == 1)
                 {
-                    if (creatures[0] is Orc)
-                    {
-                        Console.Write(" O ");
-                    }
-                    else if (creatures[0] is Elf)
-                    {
-                        Console.Write(" E ");
-                    }    
+                    Console.Write(" " + creatures[0].Symbol + " ");
                 }
                 else if (creatures.Count > 1)
                 {
@@ -63,7 +54,6 @@ public class MapVisualizer
             }
             Console.WriteLine(Box.Vertical);
 
-
             Console.Write(Box.MidLeft);
             for (int i = 0; i < _map.SizeX - 1; i++)
             {
@@ -73,21 +63,13 @@ public class MapVisualizer
             Console.WriteLine(new string(Box.Horizontal, 3) + Box.MidRight);
         }
 
-
         Console.Write(Box.Vertical);
         for (int i = 0; i < _map.SizeX; i++)
         {
-            var creatures = _map.At(i, _map.SizeY - 1);
+            var creatures = _map.At(i, 0); // Dolny rząd, Y = 0
             if (creatures.Count == 1)
             {
-                if (creatures[0] is Orc)
-                {
-                    Console.Write(" O ");
-                }
-                else if (creatures[0] is Elf)
-                {
-                    Console.Write(" E ");
-                }
+                Console.Write(" " + creatures[0].Symbol + " ");
             }
             else if (creatures.Count > 1)
             {

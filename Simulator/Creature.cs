@@ -17,6 +17,8 @@ public abstract class Creature : IMappable
     
     public Point Position { get; set; }
 
+    public virtual char Symbol => 'C';
+
     public void InitMapAndPosition(Map map, Point position)
     {
         Map = map;

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Simulator;
 
 public class Elf : Creature
-{    
+{
+    public override char Symbol => 'E';
     private int _agility;
     public int Agility
     {

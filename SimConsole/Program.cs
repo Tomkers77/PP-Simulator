@@ -14,13 +14,23 @@ public class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
-        SmallSquareMap map = new(5, 5);
-        List<IMappable> creatures = [new Orc("Gorbag"), new Elf("Elandor")];
-        List<Point> points = [new(0, 3), new(2, 3)];
-        string moves = "dlrludl";
+        SmallTorusMap map = new(8, 6);
+        List<IMappable> creatures = [
+            new Orc("Gorbag"), 
+            new Elf("Elandor"), 
+            new Animals { Description = "Kroliki", Size = 4 }, 
+            new Birds { Description = "Orly", Size = 2, CanFly = true },
+            new Birds { Description = "Strusie", Size = 3, CanFly = false }];
+        List<Point> points = [new(0, 3), new(2, 3), new(0, 1), new(3, 3), new(1, 4)];
+        string moves = "durlddlurdrruud";
 
+        
         Simulation simulation = new(map, creatures, points, moves);
         MapVisualizer mapVisualizer = new(simulation.Map);
+        for (int i = 0; i < moves.Length; i++)
+        {
+            simulation.Turn();
+        }
         mapVisualizer.Draw();
     }
 
