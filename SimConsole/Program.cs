@@ -22,15 +22,12 @@ public class Program
             new Birds { Description = "Orly", Size = 2, CanFly = true },
             new Birds { Description = "Strusie", Size = 3, CanFly = false }];
         List<Point> points = [new(0, 3), new(2, 3), new(0, 1), new(3, 3), new(1, 4)];
-        string moves = "durlddlurdrruud";
+        string moves = "durld";
 
         
         Simulation simulation = new(map, creatures, points, moves);
+        SimulationHistory history = new(simulation);
         MapVisualizer mapVisualizer = new(simulation.Map);
-        for (int i = 0; i < moves.Length; i++)
-        {
-            simulation.Turn();
-        }
         mapVisualizer.Draw();
     }
 
