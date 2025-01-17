@@ -1,0 +1,44 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Symulacja";
+}
+
+<h1>Symulacja</h1>
+
+<h2>Counter: @Model.Counter</h2>
+
+<div>
+    <!-- Siatka mapy -->
+    <table style="border-collapse: collapse; text-align: center;">
+        @for (int y = 0; y < Model.MapSizeY; y++)
+        {
+            <tr>
+                @for (int x = 0; x < Model.MapSizeX; x++)
+                {
+                    var point = new Simulator.Point(x, Model.MapSizeY - 1 - y);
+                    if (Model.CurrentLog.Symbols.ContainsKey(point)) {
+                        var symbol = Model.CurrentLog.Symbols[point];
+                        <td style="width: 60px; height: 60px; border: 3px solid black;">
+                            @symbol
+                        </td>
+                    } else {
+                        <td style="width: 60px; height: 60px; border: 3px solid black;">
+                            @(" ")
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+
+    <form asp-page="/Index" method="post">
+    <div style="margin-top: 40px;">
+    <!-- Sterowanie -->
+    <form method="post">
+        <button type="submit" name="action" value="back" class="btn btn-warning">Wstecz</button>
+        <button type="submit" name="action" value="next" class="btn btn-primary">Dalej</button>
+    </form>
+</div>
+</form>
+</div>

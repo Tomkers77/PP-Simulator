@@ -26,7 +26,7 @@ public class Program
 
         
         Simulation simulation = new(map, creatures, points, moves);
-        SimulationHistory history = new(simulation);
+        //SimulationHistory history = new(simulation);
         MapVisualizer mapVisualizer = new(simulation.Map);
         mapVisualizer.Draw();
     }
